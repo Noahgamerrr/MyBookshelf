@@ -1,0 +1,19 @@
+<main>
+    <h1>{{ title }}</h1>
+    <div>
+        <h2>Read books</h2>
+        @for ( book of books; track book.id) {
+            <book
+                [title]=book.title
+                [author]=book.author
+                [description]=book.description
+                [rating]=book.rating
+                [thoughts]=book.thoughts
+                [cover]=book.cover
+            />
+        }
+    </div>
+</main>
+
+
+<router-outlet />

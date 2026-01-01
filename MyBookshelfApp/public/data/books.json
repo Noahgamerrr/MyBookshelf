@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "1984",
+        "author": "George Orwell",
+        "description": "Lorem ipsum dolor sit amet",
+        "rating": 5,
+        "thoughts": "Gud book",
+        "cover": "1984.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Atomic Habits",
+        "author": "James Clear",
+        "description": "Lorem ipsum dolor sit amet",
+        "rating": 5,
+        "thoughts": "Also gud book",
+        "cover": "atomic-habits.jpg"
+    }
+]
