@@ -1,8 +1,24 @@
-<div>
-    <p>{{ title() }}</p>
-    <p>{{ author() }}</p>
-    <p>{{ description() }}</p>
-    <p>{{ rating() }}</p>
-    <p>{{ thoughts() }}</p>
-    <p>{{ cover() }}</p>
+<div class="book">
+    <div>
+        <img class="book-cover" src="/images/books/{{ cover() }}" alt="{{ cover() }}"/>
+    </div>
+    <div class="book-info">
+        <p class="book-title">{{ title() }}</p>
+        <p class="book-author">{{ author() }}</p>
+    </div>
+    <div>
+        <div>
+            @for (star of [].constructor(rating()); track $index) {
+                <book-star 
+                    [fill]="'#F9EBB2'"
+                />
+            }
+            @for (star of [].constructor(5 - rating()); track $index) {
+                <book-star 
+                    [fill]="'#FFF'"
+                />
+            }
+        </div>
+        <p>{{ description() }}</p>
+    </div>
 </div>

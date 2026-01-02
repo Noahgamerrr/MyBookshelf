@@ -1,0 +1,32 @@
+.book {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.book-cover {
+    height: 150px;
+    width: 100px;
+    border-radius: 8px;
+    object-fit: cover
+}
+
+.book-info {
+    width: 200px;
+}
+
+.book > div {
+    margin: 0px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.book-title {
+    font-weight: bold;
+    font-size: larger;
+    margin-bottom: 8px;
+}
+
+.book-title, .book-author {
+    margin-top: 0;
+}
