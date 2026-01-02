@@ -1,0 +1,54 @@
+main {
+    width: 75%;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 12px 8px;
+    background-color: #05544a;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #033d35;
+}
+
+.add-book-form {
+    display: none;
+}
+
+.form-info, .form-desc {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.form-desc span {
+    width: 49%;
+}
+
+textarea {
+    margin-top: 8px;
+    width: 100%;
+    height: 15em;
+}
+
+label {
+    margin-right: 8px;
+}
+
+.add-button {
+    margin-top: 8px;
+    padding: 8px 16px;
+}
+

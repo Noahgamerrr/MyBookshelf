@@ -1,17 +1,50 @@
 <main>
     <h1>{{ title }}</h1>
-    <div>
-        <h2>Read books</h2>
+    <div #bookshelf class="bookshelf">
+        <div class="header">
+            <h2>Read books</h2>
+            <button (click)="showBookForm()">Add book</button>
+        </div>
         @for ( book of books; track book.id) {
-            <book
+            <read-book
                 [title]=book.title
                 [author]=book.author
                 [description]=book.description
-                [rating]=book.rating
-                [thoughts]=book.thoughts
+                [rating]="book.rating || 0"
+                [thoughts]="book.thoughts || ''"
                 [cover]=book.cover
             />
         }
+    </div>
+    <div #addBookForm class="add-book-form">
+        <h2>Add book</h2>
+        <form (ngSubmit)="addBook()">
+            <div class="form-info">
+                <span>
+                    <label for="title">Title:</label>
+                    <input name="title" [(ngModel)]="model.title"/>
+                </span>
+                <span>
+                    <label for="author">Author:</label>
+                    <input name="author" [(ngModel)]="model.author"/>
+                </span>
+            </div>
+            <div class="form-desc">
+                <span>
+                    <label for="description">Description:</label>
+                    <textarea name="description" [(ngModel)]="model.description"></textarea>
+                </span>
+                <span>
+                    <label for="thoughts">Thoughts:</label>
+                    <textarea name="thoughts" [(ngModel)]="model.thoughts"></textarea>
+                </span>
+            </div>
+            <div>
+                <label for="rating">Rating:</label>
+                <input name="rating" type="number" [(ngModel)]="model.rating" min="0" max="5"/>
+            </div>
+            <button type="submit" class="add-button">Add</button>
+        </form>
     </div>
 </main>
 

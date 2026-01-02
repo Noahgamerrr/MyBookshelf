@@ -1,6 +1,7 @@
 .book {
+    width: 100%;
     display: flex;
-    margin-bottom: 8px;
+    margin: 16px 0;
 }
 
 .book-cover {
@@ -14,7 +15,11 @@
     width: 200px;
 }
 
-.book > div {
+.book-rating {
+    margin-left: auto;
+}
+
+.book-cover, .book-info {
     margin: 0px 8px;
     display: flex;
     flex-direction: column;

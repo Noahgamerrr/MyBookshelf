@@ -1,12 +1,10 @@
 <div class="book">
-    <div>
-        <img class="book-cover" src="/images/books/{{ cover() }}" alt="{{ cover() }}"/>
-    </div>
+    <img #bookCover class="book-cover" src="/images/books/{{ cover() }}" (error)="loadFallback()" alt="{{ cover() }}"/>
     <div class="book-info">
         <p class="book-title">{{ title() }}</p>
         <p class="book-author">{{ author() }}</p>
     </div>
-    <div>
+    <div class="book-rating">
         <div>
             @for (star of [].constructor(rating()); track $index) {
                 <book-star 
