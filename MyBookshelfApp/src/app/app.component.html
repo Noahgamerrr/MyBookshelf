@@ -5,15 +5,17 @@
             <h2>Read books</h2>
             <button (click)="showBookForm()">Add book</button>
         </div>
-        @for ( book of books; track book.id) {
-            <read-book
-                [title]=book.title
-                [author]=book.author
-                [description]=book.description
-                [rating]="book.rating || 0"
-                [thoughts]="book.thoughts || ''"
-                [cover]=book.cover
-            />
+        @if (books$ | async; as books) {
+            @for ( book of books; track book.id) {
+                <read-book
+                    [title]=book.title
+                    [author]=book.author
+                    [description]=book.description
+                    [rating]="book.rating || 0"
+                    [thoughts]="book.thoughts || ''"
+                    [cover]=book.cover
+                />
+            }
         }
     </div>
     <div #addBookForm class="add-book-form">

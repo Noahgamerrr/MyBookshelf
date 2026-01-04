@@ -1,24 +1,38 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, inject, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReadBook } from './components/book/book.component';
 import { FormsModule } from '@angular/forms';
-import BookData from '../../public/data/books.json';
 import { Book } from '../types/book';
+import { HttpBookService } from './services/http-book.service';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, ReadBook, FormsModule],
+    imports: [RouterOutlet, ReadBook, FormsModule, AsyncPipe],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
     title = 'My bookshelf';
-    books = BookData as Book[];
+    books$!: Observable<Book[]>;
+
+    private httpBookService = inject(HttpBookService);
+
+    constructor() {
+        effect(() => {
+            this.loadBooks();
+        })
+    }
 
     model = new Book(0, '', '', '',  '', 0, '');
 
     bookshelf = viewChild<ElementRef<HTMLDivElement>>('bookshelf');
     addBookForm = viewChild<ElementRef<HTMLDivElement>>('addBookForm');
+
+    loadBooks() {
+        this.books$ = this.httpBookService.getBooks();
+    }
 
     showBookForm() {
         if (!this.bookshelf() || !this.addBookForm()) return;
@@ -29,9 +43,10 @@ export class AppComponent {
     }
 
     addBook() {
+        
         if (!this.bookshelf() || !this.addBookForm()) return;
-        this.model.id = this.books.length + 1;
-        this.books.push(this.model);
+        this.httpBookService.addBook(this.model, () => this.loadBooks());
+        this.books$ = this.httpBookService.getBooks();
         this.model = new Book(0, '', '', '',  '', 0, '');
         const bookshelf = this.bookshelf() as ElementRef<HTMLDivElement>;
         const addBookForm = this.addBookForm() as ElementRef<HTMLDivElement>;
