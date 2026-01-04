@@ -1,0 +1,2 @@
+INSERT INTO book (title, author, description, cover, rating, thoughts) VALUES ('1984', 'George Orwell', 'Lorem ipsum', '1984.jpg', 5, 'Gud book');
+INSERT INTO book (title, author, description, cover, rating, thoughts) VALUES ('Atomic Habits', 'James Clear', 'dolor sit amet', 'atomic-habits.jpg', 4, 'Also gud book');
