@@ -16,4 +16,11 @@ public class BookServiceImpl implements BookService {
     public List<Book> get() {
         return repository.findAll();
     }
+
+    @Override
+    public Book insert(Book book) {
+        return repository.saveAndFlush(book);
+    }
+
+
 }

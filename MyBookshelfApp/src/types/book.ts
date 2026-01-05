@@ -4,8 +4,12 @@ export class Book {
         public title: string,
         public author: string,
         public description: string,
-        public cover: string,
+        public cover?: File | null,
         public rating?: number,
         public thoughts?: string,
     ) {}
+}
+
+export interface FileEventTarget extends EventTarget {
+    files: File[]
 }

@@ -8,4 +8,5 @@ import java.util.List;
 @Component
 public interface BookService {
     List<Book> get();
+    Book insert(Book book);
 }

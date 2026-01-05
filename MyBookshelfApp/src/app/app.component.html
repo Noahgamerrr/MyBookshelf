@@ -8,12 +8,12 @@
         @if (books$ | async; as books) {
             @for ( book of books; track book.id) {
                 <read-book
+                    [id]=book.id
                     [title]=book.title
                     [author]=book.author
                     [description]=book.description
                     [rating]="book.rating || 0"
                     [thoughts]="book.thoughts || ''"
-                    [cover]=book.cover
                 />
             }
         }
@@ -44,6 +44,10 @@
             <div>
                 <label for="rating">Rating:</label>
                 <input name="rating" type="number" [(ngModel)]="model.rating" min="0" max="5"/>
+            </div>
+            <div>
+                <label for="cover">Upload Cover:</label>
+                <input name="cover" type="file" accept="image/*" (change)="setCover($event)"/>
             </div>
             <button type="submit" class="add-button">Add</button>
         </form>

@@ -1,5 +1,6 @@
 import { Component, ElementRef, input, viewChild } from "@angular/core";
 import { BookStar } from "./bookStar/bookStar.component";
+import { Constants } from "../../../types/constants";
 
 @Component({
     selector: 'read-book',
@@ -8,12 +9,14 @@ import { BookStar } from "./bookStar/bookStar.component";
     imports: [ BookStar ]
 })
 export class ReadBook {
+    id = input(0);
     title = input("");
     author = input("");
     description = input("");
     rating = input(0);
     thoughts = input("");
     cover = input("");
+    apiBasePath = Constants.apiBasePath;
 
     bookCover = viewChild<ElementRef<HTMLImageElement>>("bookCover");
 

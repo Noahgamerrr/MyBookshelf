@@ -1,5 +1,5 @@
 <div class="book">
-    <img #bookCover class="book-cover" src="/images/books/{{ cover() }}" (error)="loadFallback()" alt="{{ cover() }}"/>
+    <img #bookCover class="book-cover" src="{{ apiBasePath }}/api/books/{{ id() }}/cover" (error)="loadFallback()" alt="{{ cover() }}"/>
     <div class="book-info">
         <p class="book-title">{{ title() }}</p>
         <p class="book-author">{{ author() }}</p>

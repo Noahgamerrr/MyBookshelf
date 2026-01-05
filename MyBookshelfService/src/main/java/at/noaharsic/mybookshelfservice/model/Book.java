@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
 
     @Column
     @NotBlank(message = "Author must be provided")
@@ -37,11 +37,11 @@ public class Book {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        id = id;
     }
 
     public String getTitle() {
@@ -96,18 +96,18 @@ public class Book {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Id == book.Id && rating == book.rating && Objects.equals(thoughts, book.thoughts) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(description, book.description) && Objects.equals(cover, book.cover);
+        return id == book.id && rating == book.rating && Objects.equals(thoughts, book.thoughts) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(description, book.description) && Objects.equals(cover, book.cover);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, title, author, description, cover, rating, thoughts);
+        return Objects.hash(id, title, author, description, cover, rating, thoughts);
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", description='" + description + '\'' +
