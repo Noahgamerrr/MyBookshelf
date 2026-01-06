@@ -16,6 +16,7 @@ import { AsyncPipe } from '@angular/common';
 export class AppComponent {
     title = 'My bookshelf';
     books$!: Observable<Book[]>;
+    showAddBookForm = false;
 
     private httpBookService = inject(HttpBookService);
 
@@ -27,27 +28,16 @@ export class AppComponent {
 
     model = new Book(0, '', '', '',  null, 0, '');
 
-    bookshelf = viewChild<ElementRef<HTMLDivElement>>('bookshelf');
-    addBookForm = viewChild<ElementRef<HTMLDivElement>>('addBookForm');
-
     loadBooks() {
         this.books$ = this.httpBookService.getBooks();
-        const bookshelf = this.bookshelf() as ElementRef<HTMLDivElement>;
-        const addBookForm = this.addBookForm() as ElementRef<HTMLDivElement>;
-        bookshelf.nativeElement.style.display = 'inherit';
-        addBookForm.nativeElement.style.display = "none";
+        this.showAddBookForm = false;
     }
 
     showBookForm() {
-        if (!this.bookshelf() || !this.addBookForm()) return;
-        const bookshelf = this.bookshelf() as ElementRef<HTMLDivElement>;
-        const addBookForm = this.addBookForm() as ElementRef<HTMLDivElement>;
-        bookshelf.nativeElement.style.display = 'none';
-        addBookForm.nativeElement.style.display = "inherit";
+        this.showAddBookForm = true;
     }
 
     addBook() {
-        if (!this.bookshelf() || !this.addBookForm()) return;
         this.httpBookService.addBook({...this.model, cover: undefined}, (id) => this.uploadCover(id));
     }
 
