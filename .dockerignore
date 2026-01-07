@@ -1,0 +1,11 @@
+# dependencies
+**/node_modules
+
+# angular
+**/.angular
+
+# vsc
+**/.vscode
+
+# builds
+**/dist
