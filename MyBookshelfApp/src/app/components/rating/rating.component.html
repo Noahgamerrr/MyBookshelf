@@ -1,0 +1,16 @@
+<div class="rating">
+    <div>
+        @for (star of [].constructor(stars()); track $index) {
+            <star 
+                [fill]="'#F9EBB2'"
+                (click)="setStars($index + 1)"
+            />
+        }
+        @for (star of [].constructor(5 - stars()); track $index) {
+            <star 
+                [fill]="'#FFF'"
+                (click)="setStars(stars() + $index + 1)"
+            />
+        }
+    </div>
+</div>

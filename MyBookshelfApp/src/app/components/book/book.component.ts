@@ -1,12 +1,12 @@
 import { Component, ElementRef, input, viewChild } from "@angular/core";
-import { BookStar } from "./bookStar/bookStar.component";
+import { Star } from "../assets/star/star.component";
 import { Constants } from "../../../types/constants";
 
 @Component({
     selector: 'read-book',
     templateUrl: 'book.component.html',
     styleUrl: 'book.component.scss',
-    imports: [ BookStar ]
+    imports: [ Star ]
 })
 export class ReadBook {
     id = input(0);

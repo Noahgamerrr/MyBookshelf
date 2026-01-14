@@ -7,12 +7,12 @@
     <div class="book-rating">
         <div>
             @for (star of [].constructor(rating()); track $index) {
-                <book-star 
+                <star 
                     [fill]="'#F9EBB2'"
                 />
             }
             @for (star of [].constructor(5 - rating()); track $index) {
-                <book-star 
+                <star 
                     [fill]="'#FFF'"
                 />
             }

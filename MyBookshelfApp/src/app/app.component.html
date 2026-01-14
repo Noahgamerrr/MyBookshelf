@@ -26,11 +26,11 @@
                 <div class="form-info">
                     <span>
                         <label for="title">Title:</label>
-                        <input name="title" [(ngModel)]="model.title"/>
+                        <input name="title" type="text" [(ngModel)]="model.title"/>
                     </span>
                     <span>
                         <label for="author">Author:</label>
-                        <input name="author" [(ngModel)]="model.author"/>
+                        <input name="author" type="text" [(ngModel)]="model.author"/>
                     </span>
                 </div>
                 <div class="form-desc">
@@ -45,11 +45,15 @@
                 </div>
                 <div>
                     <label for="rating">Rating:</label>
-                    <input name="rating" type="number" [(ngModel)]="model.rating" min="0" max="5"/>
+                    <rating [(stars)]="model.rating"></rating>
                 </div>
-                <div>
+                <div class="file-upload">
                     <label for="cover">Upload Cover:</label>
-                    <input name="cover" type="file" accept="image/*" (change)="setCover($event)"/>
+                    <input name="cover" type="file" accept="image/*" (change)="setCover($event)" #fileUpload/>
+                    <button (click)="$event.preventDefault(); fileUpload.click()">
+                        <img src="/svg/paperclip.svg" id="svg-paperclip"/>
+                    </button>
+                    <span>{{ model.cover?.name || "No file selected" }}</span>
                 </div>
                 <button type="submit" class="add-button">Add</button>
             </form>

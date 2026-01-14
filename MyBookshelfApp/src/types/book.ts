@@ -4,8 +4,8 @@ export class Book {
         public title: string,
         public author: string,
         public description: string,
+        public rating: number,
         public cover?: File | null,
-        public rating?: number,
         public thoughts?: string,
     ) {}
 }

@@ -6,10 +6,11 @@ import { Book, FileEventTarget } from '../types/book';
 import { HttpBookService } from './services/http-book.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { Rating } from './components/rating/rating.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, ReadBook, FormsModule, AsyncPipe],
+    imports: [RouterOutlet, ReadBook, FormsModule, AsyncPipe, Rating],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -26,7 +27,7 @@ export class AppComponent {
         })
     }
 
-    model = new Book(0, '', '', '',  null, 0, '');
+    model = new Book(0, '', '', '',  1, null, '');
 
     loadBooks() {
         this.books$ = this.httpBookService.getBooks();
@@ -46,7 +47,7 @@ export class AppComponent {
             const cover: File = this.model.cover;
             this.httpBookService.addCover(id, cover, () => this.loadBooks());
         } else this.loadBooks();
-        this.model = new Book(0, '', '', '',  null, 0, '');
+        this.model = new Book(0, '', '', '',  1, null, '');
     }
 
     setCover(event: Event) {
