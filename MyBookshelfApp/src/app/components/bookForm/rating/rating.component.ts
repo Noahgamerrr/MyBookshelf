@@ -1,5 +1,5 @@
 import { Component, model } from "@angular/core";
-import { Star } from "../assets/star/star.component";
+import { Star } from "../../assets/star/star.component";
 
 @Component({
     selector: 'rating',

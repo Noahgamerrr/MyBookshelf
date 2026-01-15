@@ -1,63 +1,9 @@
 <main>
     <h1>{{ title }}</h1>
     @if (!showAddBookForm) {
-        <div #bookshelf class="bookshelf">
-            <div class="header">
-                <h2>Read books</h2>
-                <button (click)="showBookForm()">Add book</button>
-            </div>
-            @if (books$ | async; as books) {
-                @for ( book of books; track book.id) {
-                    <read-book
-                        [id]=book.id
-                        [title]=book.title
-                        [author]=book.author
-                        [description]=book.description
-                        [rating]="book.rating || 0"
-                        [thoughts]="book.thoughts || ''"
-                    />
-                }
-            }
-        </div>
+        <bookshelf (showBookForm)="showBookForm()" [books$]="books$"/>
     } @else {
-        <div #addBookForm class="add-book-form">
-            <h2>Add book</h2>
-            <form (ngSubmit)="addBook()">
-                <div class="form-info">
-                    <span>
-                        <label for="title">Title:</label>
-                        <input name="title" type="text" [(ngModel)]="model.title"/>
-                    </span>
-                    <span>
-                        <label for="author">Author:</label>
-                        <input name="author" type="text" [(ngModel)]="model.author"/>
-                    </span>
-                </div>
-                <div class="form-desc">
-                    <span>
-                        <label for="description">Description:</label>
-                        <textarea name="description" [(ngModel)]="model.description"></textarea>
-                    </span>
-                    <span>
-                        <label for="thoughts">Thoughts:</label>
-                        <textarea name="thoughts" [(ngModel)]="model.thoughts"></textarea>
-                    </span>
-                </div>
-                <div>
-                    <label for="rating">Rating:</label>
-                    <rating [(stars)]="model.rating"></rating>
-                </div>
-                <div class="file-upload">
-                    <label for="cover">Upload Cover:</label>
-                    <input name="cover" type="file" accept="image/*" (change)="setCover($event)" #fileUpload/>
-                    <button (click)="$event.preventDefault(); fileUpload.click()">
-                        <img src="/svg/paperclip.svg" id="svg-paperclip"/>
-                    </button>
-                    <span>{{ model.cover?.name || "No file selected" }}</span>
-                </div>
-                <button type="submit" class="add-button">Add</button>
-            </form>
-        </div>
+        <book-form (onUpload)="onUpload()"/>
     }
 </main>
 

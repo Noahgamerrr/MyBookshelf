@@ -1,16 +1,15 @@
-import { Component, effect, ElementRef, inject, viewChild } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ReadBook } from './components/book/book.component';
 import { FormsModule } from '@angular/forms';
-import { Book, FileEventTarget } from '../types/book';
-import { HttpBookService } from './services/http-book.service';
+import { Book } from '../types/book';
+import { Bookshelf } from "./components/bookshelf/bookshelf.component";
+import { BookForm } from './components/bookForm/bookform.component';
 import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
-import { Rating } from './components/rating/rating.component';
+import { HttpBookService } from './services/http-book.service';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, ReadBook, FormsModule, AsyncPipe, Rating],
+    imports: [RouterOutlet, FormsModule, Bookshelf, BookForm],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
@@ -29,30 +28,20 @@ export class AppComponent {
 
     model = new Book(0, '', '', '',  1, null, '');
 
-    loadBooks() {
-        this.books$ = this.httpBookService.getBooks();
-        this.showAddBookForm = false;
-    }
-
     showBookForm() {
         this.showAddBookForm = true;
     }
 
-    addBook() {
-        this.httpBookService.addBook({...this.model, cover: undefined}, (id) => this.uploadCover(id));
+    showBookshelf() {
+        this.showAddBookForm = false;
     }
 
-    uploadCover(id: number) {
-        if (this.model.cover) {
-            const cover: File = this.model.cover;
-            this.httpBookService.addCover(id, cover, () => this.loadBooks());
-        } else this.loadBooks();
-        this.model = new Book(0, '', '', '',  1, null, '');
+    loadBooks() {
+        this.books$ = this.httpBookService.getBooks();
     }
 
-    setCover(event: Event) {
-        if (!event.target) return;
-        const file: File = (event.target as FileEventTarget).files[0];
-        this.model.cover = file;
+    onUpload() {
+        this.loadBooks();
+        this.showBookshelf();
     }
 }

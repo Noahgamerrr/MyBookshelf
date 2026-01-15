@@ -6,3 +6,17 @@
 * {
     font-family: inter;
 }
+
+button {
+    padding: 12px 8px;
+    background-color: #05544a;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #033d35;
+}

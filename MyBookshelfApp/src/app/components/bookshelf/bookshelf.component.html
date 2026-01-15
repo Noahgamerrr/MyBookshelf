@@ -1,0 +1,18 @@
+<div #bookshelf class="bookshelf">
+    <div class="header">
+        <h2>Read books</h2>
+        <button (click)="showBookForm.emit()">Add book</button>
+    </div>
+    @if (books$() | async; as books) {
+        @for ( book of books; track book.id) {
+            <read-book
+                [id]=book.id
+                [title]=book.title
+                [author]=book.author
+                [description]=book.description
+                [rating]="book.rating || 0"
+                [thoughts]="book.thoughts || ''"
+            />
+        }
+    }
+</div>
